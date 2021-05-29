@@ -32,12 +32,24 @@ end
 
 puts "Rock Paper Scissors"
 winner_num = 0
+NUM_TO_WIN = 2
+player_1_points = 0
+player_2_points = 0
 
-while winner_num == 0
-player_1_selection = get_selection("1")
-next if player_1_selection == 0
-player_2_selection = get_selection("2")
-next if player_2_selection == 0
-winner_num = compute_result(player_1_selection, player_2_selection)
+until player_1_points == 2 || player_2_points == 2
+  player_1_selection = get_selection("1")
+  next if player_1_selection == 0
+  player_2_selection = get_selection("2")
+  next if player_2_selection == 0
+  winner_num = compute_result(player_1_selection, player_2_selection)
+  if winner_num == 1
+    player_1_points += 1
+  elsif winner_num == 2
+    player_2_points += 1
+  end
 end
-puts "Player #{winner_num} wins."
+if player_1_points > player_2_points
+  puts "Player 1 wins."
+else
+  puts "Player 2 wins."
+end
