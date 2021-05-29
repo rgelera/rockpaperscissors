@@ -8,7 +8,7 @@ def get_selection(player_num)
       valid = true
     else
       puts "No cheaters! Only Rock, Paper or Scissors are allowed."
-      exit
+      return 0
     end
   end until valid
   return selection
@@ -31,8 +31,13 @@ def compute_result(selection_1, selection_2)
 end
 
 puts "Rock Paper Scissors"
-player_1_selection = get_selection("1")
-player_2_selection = get_selection("2")
-winner_num = compute_result(player_1_selection, player_2_selection)
+winner_num = 0
 
-puts "Player #{winner_num} wins." if winner_num != 0
+while winner_num == 0
+player_1_selection = get_selection("1")
+next if player_1_selection == 0
+player_2_selection = get_selection("2")
+next if player_2_selection == 0
+winner_num = compute_result(player_1_selection, player_2_selection)
+end
+puts "Player #{winner_num} wins."
